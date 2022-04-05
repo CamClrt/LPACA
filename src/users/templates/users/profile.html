@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>Bienvenue !<br></h1>
+<legend class="border-bottom mb-4"></legend>
+<form method="POST" enctype='multipart/form-data'>
+    {% csrf_token %}
+    <div class="row text-center">
+        <div class="col-lg-12 col-md-12">
+            <div class="media-body mb-4">
+                <h2 class="account-heading">{{ user.first_name }} {{ user.last_name }}</h2>
+                <h5>Identifiant: {{ user.username }}</h5>
+                <h6>Mail: {{ user.email }}</h6>
+            </div>
+            <div class="media">
+                <!-- Organization part -->
+                {% if user.status == "ASSOCIATION" %}
+                <img class="mx-auto rounded-circle" src="{{ user.organizationprofile.logo.url }}" alt="logo">
+                <div class="row text-center mb-5">
+                    <div class="col-lg-12 col-md-12">
+                        {{ organization_profile_form.logo|as_crispy_field }}
+                    </div>
+                </div>
+                {% endif %}
+                <!-- Candidate part -->
+                {% if user.status == "BENEVOLE" %}
+                <img class="rounded-circle account-img mb-4" src="{{ user.candidateprofile.avatar.url }}" alt="avatar">
+                <div class="row text-center mb-5">
+                    <div class="col-lg-12 col-md-12">
+                        {{ candidate_profile_form.avatar|as_crispy_field }}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            {{ user_form.first_name|as_crispy_field }}
+        </div>
+        <div class="col-lg-6 col-md-12">
+            {{ user_form.last_name|as_crispy_field }}<br>
+        </div>
+    </div>
+
+    <!-- Organization part -->
+    {% if user.status == "ASSOCIATION" %}
+    <h6>Votre association</h6><br>
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            {{ organization_profile_form.denomination|as_crispy_field }}
+        </div>
+        <div class="col-lg-6 col-md-12">
+            {{ sector_form.entitled|as_crispy_field }}
+        </div>
+        <div class="col-lg-12 col-md-12">
+            {{ organization_profile_form.description|as_crispy_field }}
+        </div>
+        <div class="col-lg-6 col-md-12">
+            {{ organization_profile_form.rna_code|as_crispy_field }}
+        </div>
+        <div class="col-lg-6 col-md-12">
+            {{ organization_profile_form.siret_code|as_crispy_field }}
+        </div>
+        <div class="col-lg-6 col-md-12">
+            {{ organization_profile_form.email|as_crispy_field }}
+        </div>
+        <div class="col-lg-6 col-md-12">
+            {{ organization_profile_form.phone_number|as_crispy_field }}
+        </div>
+        <div class="col-lg-12 col-md-12">
+            {{ organization_profile_form.web_site_url|as_crispy_field }}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Candidate part -->
+    {% if user.status == "BENEVOLE" %}
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            {{ candidate_profile_form.web_site_url|as_crispy_field }}
+        </div>
+        <div class="col-lg-6 col-md-12">
+            {{ candidate_profile_form.linkedin_url|as_crispy_field }}
+        </div>
+        <div class="col-lg-6 col-md-12">
+            {{ candidate_profile_form.github_url|as_crispy_field }}
+        </div>
+        <div class="col-lg-6 col-md-12">
+            {{ candidate_profile_form.gitlab_url|as_crispy_field }}
+        </div>
+        <div class="col-lg-12 col-md-12">
+            {{ candidate_profile_form.description|as_crispy_field }}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            {{ location_form.address_1|as_crispy_field }}
+        </div>
+        <div class="col-lg-6 col-md-12">
+            {{ location_form.address_2|as_crispy_field }}
+        </div>
+        <div class="col-lg-6 col-md-12">
+            {{ location_form.city|as_crispy_field }}
+        </div>
+        <div class="col-lg-6 col-md-12">
+            {{ location_form.zip_code|as_crispy_field }}
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <button class="btn btn-outline-warning mt-4" type="Submit">Mettre à jour</button>
+    </div>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>-La plateforme à caractère associatif-</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home:home' %}">Home</a>
+            </div>
+        </nav>
+
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-heading">Mentions légales</div>
+            </div>
+        </header>
+
+        <!-- Legal notices -->
+        <section class="page-section">
+            <div class="container">
+                <div class="content-section">
+                    <legend class="border-bottom mb-4">Projet réalisé dans le cadre du parcours Développeur Python <a
+                            href="https://openclassrooms.com/fr/paths/322-developpeur-dapplication-python"
+                            target="_blank">OpenClassrooms.</a></legend>
+                    <ul>
+                        <li>Design: <a href="https://startbootstrap.com/theme/agency" target="_blank">Template
+                                Bootstrap Agency</a></li>
+                        <li>Ressources graphiques: <a href="https://thenounproject.com" target="_blank">thenounproject.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <p>***</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js' %}"></script>
+    </body>
+</html>

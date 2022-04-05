@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Mes disponibilités</h1>
+<legend class="border-bottom mb-4"></legend>
+<div class="row text-center">
+    <div class="col-lg-6 col-md-12">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="row text-center">
+                <input type="submit" value="Ajouter" class="btn btn-outline-warning mt-3">
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-6 col-md-12">
+        {% for availability in availabilities %}
+        <ul>
+            <li><strong>{{availability.hour_per_session}}h {{availability.get_type_display|lower}}</strong> - Période du
+                {{availability.start_date}}
+                au {% if availability.end_date is not None %} {{availability.end_date}} {% else %} - {% endif %}
+                <a href="{% url 'candidate:remove_availability' availability.id %}">Supprimer</a>
+            </li>
+        </ul>
+        {% endfor %}
+        <div class="row text-center">
+            <a type="submit" class="btn btn-outline-warning mt-3" href="{% url 'candidate:dashboard' %}">Retour</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

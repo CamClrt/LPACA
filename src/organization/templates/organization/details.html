@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<img class="rounded-circle account-img mb-4" src="{{ user.candidateprofile.avatar.url }}" alt="avatar">
+<h2 class="account-heading">{{ user.first_name }} {{ user.last_name }}</h2>
+<p class="text-secondary">{{ user.email }}</p>
+<fieldset class="mb-5">
+        <legend class="border-bottom mb-4">Profile Info</legend>
+        <ul>
+                <li><strong>Dernière connexion: </strong>{{ user.last_login|date:"D d M Y" }}</li>
+                <li>(Inscription: {{ user.date_joined|date:"D d M Y" }})</li>
+        </ul>
+        <p><strong>Bio: </strong><br>
+                {{ user.candidateprofile.description }}</p>
+</fieldset>
+
+<div class="container">
+        <div class="text-center">
+                <a class="btn btn-dark btn-social mx-2" href="{{ user.candidateprofile.github_url }}" target="_blank"><i
+                                class="fab fa-github"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="{{ user.candidateprofile.gitlab_url }}" target="_blank"><i
+                                class="fab fa-github-alt" aria-hidden="true"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="{{ user.candidateprofile.linkedin_url }}"
+                        target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="{{ user.candidateprofile.web_site_url }}"
+                        target="_blank"><i class="fas fa-window-restore"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="mailto:{{ user.email }}"><i
+                                class="fa fa-envelope"></i></a>
+        </div>
+</div>
+
+{% endblock content %}

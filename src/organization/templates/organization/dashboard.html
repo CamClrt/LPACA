@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Dashboard association</h1>
+<legend class="border-bottom mb-2"></legend>
+<div class="mt-5 mb-5">
+    <h5>Ici, se trouve peut-être la personne qu'il vous faut !</h5>
+</div>
+
+
+<div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+    {% for user in users %}
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+                <small>{{user.candidateprofile.location.city}}
+                    ({{user.candidateprofile.location.zip_code|slice:":2"}})
+                </small>
+                <p class="card-text mt-3"><strong>Zone de déplacement:</strong>
+                    {{user.candidateprofile.wish.get_scoop_display }}</p>
+
+                <p class="card-text"><strong>Intervention à distance: </strong>{%if user.candidateprofile.wish.remote%}
+                    Possible {%else%} Non souhaitée {%endif%}</p>
+
+                <p class="card-text"><strong>Secteur(s) souhaité(s):</strong>
+                <ul>
+                    {% for sector in user.candidateprofile.wish.sectors.all %}
+                    <li>{{sector.get_entitled_display}}</li>
+                    {% endfor %}
+                </ul>
+                </p>
+
+                <p class="card-text"><strong>Compétences:</strong>
+                <ul>
+                    {% for activiy in user.candidateprofile.activities.all %}
+                    <li>{{ activiy.get_name_display }}</li>
+                    {% endfor %}
+                </ul>
+                </p>
+
+                <p class="card-text"><strong>Disponibilités:</strong>
+                <ul>{% for availability in user.candidateprofile.availabilities.all %}
+                    <li><strong>{{availability.hour_per_session}}h {{availability.get_type_display|lower}}</strong> -
+                        Période du
+                        {{availability.start_date}}
+                        au {% if availability.end_date is not None %} {{availability.end_date}} {% else %} - {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                </p>
+                <a class="btn btn-outline-warning mt-4 me-2" href="{% url 'organization:details' user.pk %}"
+                    target="_blank">Profil</a>
+                <a class="btn btn-outline-success mt-4" href="mailto:{{ user.email }}">Contacter</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Précédent</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">Précédent</span>
+        </li>
+        {% endif %}
+
+        {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+        <li class="page-item active" aria-current="page">
+            <span class="page-link">{{ i }}</span>
+        </li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Suivant</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">Suivant</span>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% endblock content %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Dashboard bénévole</h1>
+<legend class="border-bottom mb-4"></legend>
+
+
+
+
+<div class="row">
+    <div class="col-md-8">
+
+        <h4 class="mb-4">💬 Mes souhaits</h4>
+        {% if wish.get_scoop_display %}
+        <p><strong>Zone de déplacement envisagée 🚘</strong>
+        <ul>
+            <li>{{wish.get_scoop_display}}</li>
+        </ul>
+        </p>
+        {% endif %}
+
+
+        <p><strong>Intervention à distance 💻</strong>
+        <ul>
+            <li>{% if wish.remote %} Possible {% else %} Non souhaitée {%endif%}</li>
+        </ul>
+        </p>
+
+        <p><strong>Secteur(s) souhaité(s) 📍</strong>
+        <ul>
+            {% for sector in sectors %}
+            <li>{{sector.get_entitled_display}}</li>
+            {% endfor %}
+        </ul>
+        </p>
+
+        <h4 class="mb-4 mt-4">🗓 Mes disponibilités</h4>
+        {% for availability in availabilities %}
+        <ul>
+            <li><strong>{{availability.hour_per_session}}h {{availability.get_type_display|lower}}</strong> - Période du
+                {{availability.start_date}}
+                au {% if availability.end_date is not None %} {{availability.end_date}} {% else %} - {% endif %}
+            </li>
+        </ul>
+        {% endfor %}
+
+        <h4 class="mb-4 mt-4">🛠 Mes compétences</h4>
+        {% for activity in activities %}
+        <ul>
+            <li>{{ activity.get_name_display }}</li>
+        </ul>
+        {% endfor %}
+
+    </div>
+    <div class="col-md-4">
+        <div class="content-section">
+            <h3>Actualiser mes informations</h3>
+            <p class='text-muted text-center'>Créer ➕ ・ Modifier 📝 ・ Supprimer ❌
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-light"><a class="nav-link"
+                        href="{% url 'candidate:activity' %}">Compétences</a></li>
+                <li class="list-group-item list-group-item-light"><a class="nav-link"
+                        href="{% url 'candidate:availability' %}">Disponibilités</a></li>
+                <li class="list-group-item list-group-item-light"><a class="nav-link"
+                        href="{% url 'candidate:wish' %}">Souhaits</a></li>
+            </ul>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

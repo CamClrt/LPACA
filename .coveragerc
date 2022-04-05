@@ -1,0 +1,16 @@
+[run]
+omit =
+    omit =
+        *tox*
+        *setup*
+        *migrations*
+        *config*
+        *admin*
+        *apps*
+        *tests_*
+        *manage.py
+        *__init__*
+        *create_activity.py
+        *create_sector.py
+        *populate.py
+        *factories.py

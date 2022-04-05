@@ -1,0 +1,44 @@
+default_language_version:
+    python: python3.9
+
+default_stages: [commit, push]
+
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+    -   id: check-yaml
+    -   id: check-ast
+    -   id: end-of-file-fixer
+        exclude_types: ['html', 'css', 'javascript', 'svg',]
+        exclude: .coveragerc
+    -   id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+        exclude_types: ['javascript']
+    -   id: detect-private-key
+    -   id: check-builtin-literals
+    -   id: no-commit-to-branch
+        args: [--branch, main ]
+    -   id: check-case-conflict
+    -   id: check-added-large-files
+        args: ['--maxkb=2000']
+    -   id: debug-statements
+
+-   repo: https://github.com/psf/black
+    rev: 21.6b0
+    hooks:
+    -   id: black
+        verbose: True
+        exclude: migrations
+
+-   repo: https://github.com/timothycrosley/isort
+    rev: 5.9.1
+    hooks:
+    -   id: isort
+        verbose: True
+
+-   repo: https://github.com/pycqa/flake8
+    rev: 3.9.2
+    hooks:
+    -   id: flake8
+        verbose: True

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block home %}
+
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container">
+        <div class="masthead-heading">La plateforme</div>
+        <div class="masthead-heading">à caractère associatif</div>
+        <div class="masthead-subheading">-Des profils IT bénévoles au service de nos associations-</div>
+        <a class="btn btn-primary btn-xl text-uppercase" href="#project">En savoir +</a>
+    </div>
+</header>
+
+<!-- empty-->
+<section class="page-section" id="project">
+</section>
+
+<!-- Project-->
+<section class="page-section bg-light">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Projet</h2>
+            <h3 class="section-subheading text-muted">{% lorem 4 p %}</h3>
+        </div>
+    </div>
+</section>
+
+<!-- Public-->
+<section class="page-section">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Vous-êtes ?</h2>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-6">
+                <span class="fa-stack fa-6x">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fas fa-hands-helping fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="my-1">Une association de loi 1901</h4>
+                <p class="text-muted">👉 Vous avez besoin de renfort ?</p>
+                <p class="text-muted fst-italic">Créer et maintenir un site Internet, des outils métiers, développer
+                    votre sécurité informatique, mettre en place des outils collaboratifs, de newsletters, de campagnes
+                    publicitaires, monter une campagne de don en ligne, former vos adhérents à distance, et plus encore
+                    🚀</p>
+            </div>
+            <div class="col-md-6">
+                <span class="fa-stack fa-6x">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="my-1">Un(e) passionné(e) ou professionnel(le) dans l'IT</h4>
+                <p class="text-muted">👉 Vous avez l'une ou plusieurs de ces cordes à votre arc ?</p>
+                <p class="text-muted fst-italic">Base de données, DevOps, Développement Front-end, Développement
+                    Back-end, Développement Full-Stack, Développement mobile, Gestion de projet, Gestion de site &
+                    réseaux sociaux, Marketing, Pédagogie & formation, Produit, SEO/SEA, Support.</p>
+            </div>
+        </div>
+    </div>
+    <div class="text-center pt-5">
+        <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'users:register' %}">M'inscrire 💥</a>
+    </div>
+</section>
+
+<!-- Team-->
+<section class="page-section bg-light" id="team">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Equipe</h2>
+            <div class="team-member">
+                <img class="mx-auto rounded-circle" src="{% static 'assets/img/team/1.png' %}" alt="Camille CLarret" />
+                <h4>Camille Clarret</h4>
+                <p class="text-muted">Développeuse Web</p>
+                <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/camille_clarret" target="_blank"><i
+                        class="fab fa-twitter"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/camille-clarret/"
+                    target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="http://camille-clarret.com" target="_blank"><i
+                        class="fas fa-window-restore"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock home %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Inscrivez-vous</legend>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                {{ form.status|as_crispy_field }}
+            </div>
+            <div class="col-lg-6 col-md-12">
+                {{ form.username|as_crispy_field }}
+            </div>
+            <div class="col-lg-6 col-md-12">
+                {{ form.email|as_crispy_field }}
+            </div>
+            <div class="col-lg-6 col-md-12">
+                {{ form.first_name|as_crispy_field }}
+            </div>
+            <div class="col-lg-6 col-md-12">
+                {{ form.last_name|as_crispy_field }}
+            </div>
+            <div class="col-lg-6 col-md-12">
+                {{ form.password1|as_crispy_field }}
+            </div>
+            <div class="col-lg-6 col-md-12">
+                {{ form.password2|as_crispy_field }}
+            </div>
+        </div>
+    </fieldset>
+    <div class="form-group">
+        <button class="btn btn-outline-warning" type="Submit">Créer un compte</button>
+    </div>
+</form>
+<div class="border-top mt-3 pt-3">
+    <small class="text-muted">
+        vous avez déjà un compte ? <a class="ml-2" href="{% url 'users:login' %}">Connexion</a>
+    </small>
+</div>
+
+{% endblock content %}
