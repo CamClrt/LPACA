@@ -53,7 +53,7 @@ PRODUCTION=1
 Clone the project
 
 ```bash
-  git clone https://github.com/CamClrt/P13-volunteering
+  git clone https://github.com/CamClrt/LPACA
 ```
 
 Go to the root of the project `P13-volunteering` and start the server
